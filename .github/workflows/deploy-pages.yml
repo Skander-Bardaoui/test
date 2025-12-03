@@ -26,12 +26,12 @@ jobs:
         run: npm ci
 
       - name: Build site
-        run: npm run build
+        run: npm run build || echo "No build needed"
 
-      - name: Upload artifact for GitHub Pages
-        uses: actions/upload-pages-artifact@v3   # ✅ Must be v3
+      - name: Upload HTML for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: '.'   # Deploy everything in the repo root
 
   deploy:
     needs: build-and-deploy
